@@ -1,0 +1,22 @@
+name: 'Happy path: search, choose, quote, hold'
+covers: [tool_selection, state, recommendation, pricing, next_action]
+turns:
+  - user: Looking for something in Goa this weekend for my 2 friends and me. Something private would be nice.
+    expect:
+      state: {city: Goa, check_in: "2026-10-09", check_out: "2026-10-11", adults: 3, preferences: [standalone_unit]}
+      tools_called: [update_booking_state, search_properties]
+      tools_not_called: [create_booking_hold]
+      top_option: goa-sossego-plunge-cottage
+      next_action: [present_options]
+  - user: Let's do the plunge pool cottage. Booking name is Asha Rao.
+    expect:
+      state: {selected_room_type_id: goa-sossego-plunge-cottage, guest_name: Asha Rao}
+      tools_called: [calculate_quote]
+      quote_total: 31388
+      hold_created: false
+      next_action: [confirm_hold, quote_price]
+  - user: Yes, please hold it.
+    expect:
+      tools_called: [create_booking_hold]
+      hold_created: true
+      next_action: [hold_created]

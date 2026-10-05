@@ -1,0 +1,9 @@
+name: 'Unknown information: is the pool heated?'
+covers: [tool_selection, hallucination, next_action]
+turns:
+  - user: Is the pool at Snowline Spa Resort in Manali heated?
+    expect:
+      tools_called: [get_property_details]
+      reply_mentions_any: ["don't have", "do not have", "not sure", "check with", "no information", "don't know", "not mentioned", "isn't mentioned", "not listed", "can't confirm"]
+      reply_excludes: ["yes, it's heated", "yes, it is heated", "the pool is heated", "yes, the pool"]
+      next_action: [handoff_to_staff, answer_question]

@@ -1,0 +1,2127 @@
+[
+  {
+    "file": "01_happy_path_to_hold.yaml",
+    "name": "Happy path: search, choose, quote, hold",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Looking for something in Goa this weekend for my 2 friends and me. Something private would be nice.",
+        "reply": "Great, Goa for this weekend, Fri 9 Oct to Sun 11 Oct, 3 adults. Here are 3 private options:\n\n1. Sossego Retreat, Agonda (South Goa) - Plunge Pool Cottage, standalone, sleeps 3. ₹31,388 total for the 2 nights incl. tax.\n2. Casa Azul Villas, Assagao (North Goa) - Two-Bedroom Pool Villa, sleeps up to 5. ₹45,784 total incl. tax.\n3. Casa Azul Villas - Three-Bedroom Pool Villa, sleeps up to 8. ₹88,500 total incl. tax.\n\nAny of these catch your eye?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 68.7,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-09', got '2026-10-09'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-11', got '2026-10-11'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 3, got 3"
+          },
+          {
+            "dimension": "state",
+            "check": "state.preferences",
+            "passed": true,
+            "detail": "want ['standalone_unit'], got ['standalone_unit']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called update_booking_state",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call create_booking_hold",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-sossego-plunge-cottage, got goa-sossego-plunge-cottage"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options'], got present_options"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "this"
+              },
+              "adults": 3,
+              "preferences": [
+                "standalone_unit"
+              ]
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Let's do the plunge pool cottage. Booking name is Asha Rao.",
+        "reply": "Lovely choice, Asha. The Plunge Pool Cottage at Sossego Retreat is all yours for Fri 9 to Sun 11 Oct.\n\nTotal: ₹31,388 for 2 nights, 3 guests, incl. tax (₹12,100 per night + ₹1,200 extra guest per night, plus 18% tax).\n\nIf you'd like, they do a private 75-minute yoga session for ₹4,500 - nice if you want it fully to yourselves. Want me to add that, or shall I hold the cottage as is?",
+        "next_action": "quote_price",
+        "tools": [
+          "update_booking_state",
+          "calculate_quote",
+          "get_addons",
+          "calculate_quote"
+        ],
+        "seconds": 10.8,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.selected_room_type_id",
+            "passed": true,
+            "detail": "want 'goa-sossego-plunge-cottage', got 'goa-sossego-plunge-cottage'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.guest_name",
+            "passed": true,
+            "detail": "want 'Asha Rao', got 'Asha Rao'"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called calculate_quote",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'calculate_quote', 'get_addons', 'calculate_quote']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "hold_created=False",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'calculate_quote', 'get_addons', 'calculate_quote']"
+          },
+          {
+            "dimension": "pricing",
+            "check": "quote total",
+            "passed": true,
+            "detail": "want 31388, quotes [31388]"
+          },
+          {
+            "dimension": "pricing",
+            "check": "reply states the quoted total",
+            "passed": true,
+            "detail": "Lovely choice, Asha. The Plunge Pool Cottage at Sossego Retreat is all yours for Fri 9 to Sun 11 Oct.\n\nTotal: ₹31,388 for 2 nights, 3 guests, incl. tax (₹12,100"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['confirm_hold', 'quote_price'], got quote_price"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "selected_room_type_id": "goa-sossego-plunge-cottage",
+              "guest_name": "Asha Rao"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "calculate_quote",
+            "args": {},
+            "status": "error",
+            "error": {
+              "error": "invalid_json",
+              "message": "Arguments were not valid JSON: Expecting ':' delimiter: line 1 column 16 (char 15)",
+              "received": "{\"room_type_id\">goa-sossego-plunge-cottage</｜DSML｜: \"goa-sossego-plunge-cottage\"}"
+            }
+          },
+          {
+            "name": "get_addons",
+            "args": {
+              "property_id": "goa-sossego"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "calculate_quote",
+            "args": {
+              "room_type_id": "goa-sossego-plunge-cottage"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 3,
+        "user": "Yes, please hold it.",
+        "reply": "Held it for you, Asha. Plunge Pool Cottage at Sossego Retreat, Fri 9 to Sun 11 Oct, ₹31,388 total incl. tax. Your hold reference is DEB8F7B9.\n\nThis is a hold, not a confirmed booking, and it expires in 15 minutes. Want me to add that private yoga session before it lapses?",
+        "next_action": "hold_created",
+        "tools": [
+          "create_booking_hold"
+        ],
+        "seconds": 5.1,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called create_booking_hold",
+            "passed": true,
+            "detail": "called: ['create_booking_hold']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "hold_created=True",
+            "passed": true,
+            "detail": "called: ['create_booking_hold']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['hold_created'], got hold_created"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "create_booking_hold",
+            "args": {
+              "room_type_id": "goa-sossego-plunge-cottage"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "02_family_private_pool_budget.yaml",
+    "name": "Family, private pool, under 20k",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Travelling with my wife and 2 kids to Goa next weekend. Something with a private pool under 20k.",
+        "reply": "Got it, 2 adults + 2 kids for next weekend (Fri 16 Oct → Sun 18 Oct, 2 nights) in Goa, private pool under ₹20k a night.\n\nOne great match:\n\nCasa Azul Villas, Assagao (North Goa)\nTwo-Bedroom Pool Villa, sleeps up to 5\nPrivate pool, ₹19,400 a night, about ₹45,784 total with taxes for the stay.\n\nShall I check the exact quote for these dates, or would you like to see anything else?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.8,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-18', got '2026-10-18'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "state",
+            "check": "state.children",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "state",
+            "check": "state.budget_per_night",
+            "passed": true,
+            "detail": "want 20000, got 20000"
+          },
+          {
+            "dimension": "state",
+            "check": "state.preferences",
+            "passed": true,
+            "detail": "want ['private_pool'], got ['private_pool']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-casa-azul-pool-villa-2br, got goa-casa-azul-pool-villa-2br"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options'], got present_options"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['Two-Bedroom Pool Villa']: Got it, 2 adults + 2 kids for next weekend (Fri 16 Oct → Sun 18 Oct, 2 nights) in Goa, private pool under ₹20k a night.\n\nOne great match:\n\nCasa Azul Villas, Assagao (North Goa)\nTwo-Bedroom Pool Villa,"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2,
+              "children": 2,
+              "preferences": [
+                "private_pool"
+              ],
+              "budget_per_night": 20000
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "03_change_party_and_extend.yaml",
+    "name": "Changing requirements: 4 people and one more night",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Need a room in Udaipur next weekend for 2 of us.",
+        "reply": "Lovely, Udaipur for the weekend of Fri 16 Oct to Sun 18 Oct, 2 guests. Here are three good fits:\n\n1. Jharokha Haveli, Heritage Room (Gangaur Ghat, Old City) - ₹14,070 total for 2 nights, right in the old city by the ghats.\n2. Aravalli Lakeside Resort, Premier Room (Badi Lake, 12 km out) - ₹26,904 total, quieter lakeside setting.\n3. Jharokha Haveli, Jharokha Lake Suite (Old City) - ₹31,152 total, the most spacious of the three.\n\nWant me to hold one, or shall I tell you more about any of them?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.8,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Udaipur', got 'Udaipur'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-18', got '2026-10-18'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Udaipur",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Actually make that 4 people and stay one more night.",
+        "reply": "Got it, 4 of you for 3 nights, Fri 16 Oct to Mon 19 Oct.\n\nFor 4 guests in one room, this is the fit:\n- Aravalli Lakeside Resort, Royal Lake Suite (Badi Lake, 12 km from the Old City) - ₹1,13,988 total for 3 nights, sleeps 4.\n\nIf you'd rather keep costs down, I could look at two smaller rooms instead. Want the suite held, or shall I check a two-room option?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 8.1,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Udaipur', got 'Udaipur'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-19', got '2026-10-19'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 4, got 4"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called update_booking_state",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['search_properties', 'check_availability']",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "adults": 4,
+              "dates": {
+                "kind": "extend",
+                "nights": 1
+              }
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "04_till_the_13th.yaml",
+    "name": "Relative checkout: \"till the 13th\"",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Goa this weekend for 2 people please.",
+        "reply": "Lovely, Goa for Fri 9 Oct → Sun 11 Oct, 2 guests. Here's what's free:\n\n1. Sossego Retreat, Agonda (South Goa) - Beach Cottage, ₹6,200/night, ₹13,020 total with tax. Quiet beachfront vibe.\n2. Tide & Tamarind Beach Resort, Candolim (North Goa) - Deluxe Room, ₹7,400/night, ₹15,540 total with tax. Close to the buzz.\n3. Casa Azul Villas, Assagao (North Goa) - Garden Suite, ₹8,800/night, ₹20,768 total with tax.\n\nAny of these appeal?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.5,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-09', got '2026-10-09'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-11', got '2026-10-11'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "this"
+              },
+              "adults": 2
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Can we stay till the 13th instead?",
+        "reply": "Updated for 4 nights, Fri 9 Oct → Tue 13 Oct, 2 guests:\n\n1. Sossego Retreat, Agonda - Beach Cottage, ₹5,800/night, ₹24,360 total with tax.\n2. Tide & Tamarind Beach Resort, Candolim - Deluxe Room, ₹6,800/night, ₹28,560 total with tax.\n3. Casa Azul Villas, Assagao - Garden Suite, ₹7,900/night, ₹35,468 total with tax.\n\nWhich one would you like to go for?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.7,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-09', got '2026-10-09'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-13', got '2026-10-13'"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['search_properties', 'check_availability']",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "dates": {
+                "kind": "check_out_day",
+                "day": 13
+              }
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "05_next_weekend.yaml",
+    "name": "Relative dates: \"next weekend\"",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Need something in Manali next weekend, 2 adults.",
+        "reply": "Got it, Manali for next weekend: Fri 16 Oct to Sun 18 Oct, 2 adults, 2 nights. Here's what's open:\n\n1. Pine Crest Cottages, Old Manali - Valley View Room, ₹5,000/night, ₹10,500 total with tax. Cosy and central.\n2. Snowline Spa Resort, Prini (4 km from Mall Road) - Deluxe Mountain Room, ₹9,400/night, ₹22,184 total. Bigger room, spa on site.\n3. Pine Crest Cottages - Family Cottage, ₹11,800/night, ₹27,848 total. Sleeps up to 6 if you want extra space.\n\nWhich one catches your eye?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.0,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Manali', got 'Manali'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-18', got '2026-10-18'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called update_booking_state",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['16', 'Oct 16', '16 Oct']: Got it, Manali for next weekend: Fri 16 Oct to Sun 18 Oct, 2 adults, 2 nights. Here's what's open:\n\n1. Pine Crest Cottages, Old Manali - Valley View Room, ₹5,000/night, ₹10,500 total with tax. Cosy an"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Manali",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "06_sold_out_alternative.yaml",
+    "name": "No availability: requested villa is sold out",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "I want the One-Bedroom Pool Villa at Casa Azul this weekend, just the two of us.",
+        "reply": "Ah, bad timing — the One-Bedroom Pool Villa at Casa Azul is fully booked for Fri 9 to Sun 11 Oct. The next date it opens up is Sun 11 Oct, if you could shift your weekend.\n\nIf the dates are fixed, closest options in Goa:\n- Garden Suite, Casa Azul (same property) — ₹20,768 total, no private pool\n- Deluxe Room, Tide & Tamarind, Candolim — ₹15,540 total\n- Beach Cottage, Sossego Retreat, Agonda — ₹13,020 total\n\nWant me to check the pool villa for 11–13 Oct instead?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "get_property_details",
+          "update_booking_state",
+          "check_availability",
+          "search_properties"
+        ],
+        "seconds": 13.8,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-09', got '2026-10-09'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-11', got '2026-10-11'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['check_availability', 'search_properties']",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'update_booking_state', 'check_availability', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call create_booking_hold",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'update_booking_state', 'check_availability', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call calculate_quote",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'update_booking_state', 'check_availability', 'search_properties']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options', 'clarify', 'ask_missing_info'], got present_options"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['not available', 'sold out', 'booked out', 'fully booked', 'unavailable', 'no availability']: Ah, bad timing — the One-Bedroom Pool Villa at Casa Azul is fully booked for Fri 9 to Sun 11 Oct. The next date it opens up is Sun 11 Oct, if you could shift your weekend.\n\nIf the dates are fixed, clo"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "this"
+              },
+              "adults": 2
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "goa-casa-azul"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "update_booking_state",
+            "args": {
+              "selected_room_type_id": "goa-casa-azul-pool-villa-1br"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "check_availability",
+            "args": {
+              "room_type_id": "goa-casa-azul-pool-villa-1br"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "07_capacity_conflict.yaml",
+    "name": "Conflicting requirements: 5 guests in a 2-person room",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "There are 5 of us and we want the Heritage Room at Jharokha Haveli in Udaipur next weekend.",
+        "reply": "Happy to help! Just so you know, the Heritage Room at Jharokha Haveli sleeps 2 only, so for 5 of you we'd need 3 rooms. For Fri 16 to Sun 18 Oct that's ₹42,210 total (3 rooms x ₹6,700 a night, taxes included, 2 nights).\n\nAlternative at the same haveli: 2 Jharokha Lake Suites (sleeps 3 each) with lake views, ₹67,024 total.\n\nWould you like me to check one of these further?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "get_property_details",
+          "check_availability",
+          "search_properties"
+        ],
+        "seconds": 9.6,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Udaipur', got 'Udaipur'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 5, got 5"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['search_properties', 'check_availability', 'get_property_details']",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'check_availability', 'search_properties']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call create_booking_hold",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'check_availability', 'search_properties']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options', 'clarify'], got present_options"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['2 guests', 'two guests', 'only fits', 'maximum', 'max', 'sleeps 2', 'rooms']: Happy to help! Just so you know, the Heritage Room at Jharokha Haveli sleeps 2 only, so for 5 of you we'd need 3 rooms. For Fri 16 to Sun 18 Oct that's ₹42,210 total (3 rooms x ₹6,700 a night, taxes i"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Udaipur",
+              "adults": 5,
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              }
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "udaipur-jharokha-haveli"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "check_availability",
+            "args": {
+              "room_type_id": "udaipur-jharokha-heritage-room"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "08_unknown_heated_pool.yaml",
+    "name": "Unknown information: is the pool heated?",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Is the pool at Snowline Spa Resort in Manali heated?",
+        "reply": "Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you looking at dates in Manali?",
+        "next_action": "handoff_to_staff",
+        "tools": [
+          "get_property_details"
+        ],
+        "seconds": 4.4,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called get_property_details",
+            "passed": true,
+            "detail": "called: ['get_property_details']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['handoff_to_staff', 'answer_question'], got handoff_to_staff"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of [\"don't have\", 'do not have', 'not sure', 'check with', 'no information', \"don't know\", 'not mentioned', \"isn't mentioned\", 'not listed', \"can't confirm\"]: Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you look"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'yes, it's heated'",
+            "passed": true,
+            "detail": "Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you look"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'yes, it is heated'",
+            "passed": true,
+            "detail": "Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you look"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'the pool is heated'",
+            "passed": true,
+            "detail": "Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you look"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'yes, the pool'",
+            "passed": true,
+            "detail": "Snowline Spa Resort does have an indoor swimming pool, open 07:00-20:00, but we don't have anything on file about whether it's heated. I can check with the property for you if you'd like. Are you look"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "manali-snowline-spa"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "09_missing_pet_policy.yaml",
+    "name": "Unknown policy: pets at a property with no pet policy",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Do you allow dogs at Sossego Retreat in Goa?",
+        "reply": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?",
+        "next_action": "handoff_to_staff",
+        "tools": [
+          "get_policy"
+        ],
+        "seconds": 4.0,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called get_policy",
+            "passed": true,
+            "detail": "called: ['get_policy']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['handoff_to_staff', 'answer_question'], got handoff_to_staff"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of [\"don't have\", 'do not have', 'not sure', 'check with', 'no information', \"don't know\", \"can't confirm\"]: I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'yes, dogs'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'yes, pets'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'dogs are welcome'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'pets are welcome'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'dogs aren't allowed'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'pets aren't allowed'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "reply excludes 'no pets'",
+            "passed": true,
+            "detail": "I don't have Sossego Retreat's pet policy on file, so I can't confirm either way. Want me to check with the property team and get back to you?"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "get_policy",
+            "args": {
+              "property_id": "goa-sossego",
+              "kind": "pets"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "10_unserved_city.yaml",
+    "name": "Destination we don't serve",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Any hotels in Jaipur for next weekend?",
+        "reply": "We don't have a property in Jaipur, sorry. Our boutique stays are in Alleppey, Goa, Manali and Udaipur. Would any of those work for next weekend (Fri 16 to Sun 18 Oct)? And how many adults would be travelling?",
+        "next_action": "ask_missing_info",
+        "tools": [
+          "update_booking_state"
+        ],
+        "seconds": 5.7,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want None, got None"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called update_booking_state",
+            "passed": true,
+            "detail": "called: ['update_booking_state']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['clarify', 'ask_missing_info', 'answer_question'], got ask_missing_info"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['Goa', 'Udaipur', 'Manali', 'Alleppey']: We don't have a property in Jaipur, sorry. Our boutique stays are in Alleppey, Goa, Manali and Udaipur. Would any of those work for next weekend (Fri 16 to Sun 18 Oct)? And how many adults would be tr"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Jaipur",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              }
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "11_budget_too_low.yaml",
+    "name": "Budget below anything available",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Goa this weekend, 2 people, under 3000 a night.",
+        "reply": "Hi! I checked Goa for Fri 9 Oct → Sun 11 Oct, 2 guests. Straight up: nothing this weekend comes in under ₹3,000 a night, so I've had to stretch the budget.\n\nClosest options:\n1. Sossego Retreat, Agonda (South Goa) – Beach Cottage, ₹6,200/night, ₹13,020 total with tax\n2. Tide & Tamarind, Candolim (North Goa) – Deluxe Room, ₹7,400/night, ₹15,540 total\n3. Casa Azul Villas, Assagao (North Goa) – Garden Suite, ₹8,800/night, ₹20,768 total\n\nWant details on any of these, or should I look at other dates?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 8.7,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "state",
+            "check": "state.budget_per_night",
+            "passed": true,
+            "detail": "want 3000, got 3000"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-sossego-beach-cottage, got goa-sossego-beach-cottage"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options', 'clarify'], got present_options"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['Beach Cottage']: Hi! I checked Goa for Fri 9 Oct → Sun 11 Oct, 2 guests. Straight up: nothing this weekend comes in under ₹3,000 a night, so I've had to stretch the budget.\n\nClosest options:\n1. Sossego Retreat, Agonda"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "this"
+              },
+              "adults": 2,
+              "budget_per_night": 3000
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "12_cheaper_recovery.yaml",
+    "name": "Recovery: \"too expensive, anything cheaper?\"",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Goa next weekend for 2, something with a private pool.",
+        "reply": "Perfect, so Goa, Fri 16 Oct → Sun 18 Oct (2 nights), 2 guests, private pool. Here's what's open:\n\n1. Sossego Retreat, Agonda (South Goa) - Plunge Pool Cottage, ~₹12,100/night, ₹28,556 total with tax. Best value.\n\n2. Casa Azul Villas, Assagao (North Goa) - One-Bedroom Pool Villa, ~₹16,300/night, ₹38,468 total.\n\n3. Casa Azul Villas - Two-Bedroom Pool Villa, ~₹19,400/night, ₹45,784 total. More space than you need for 2, but lovely.\n\nWhich one takes your fancy?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.6,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Goa', got 'Goa'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-16', got '2026-10-16'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "state",
+            "check": "state.preferences",
+            "passed": true,
+            "detail": "want ['private_pool'], got ['private_pool']"
+          },
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-sossego-plunge-cottage, got goa-sossego-plunge-cottage"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2,
+              "preferences": [
+                "private_pool"
+              ]
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Too expensive. Anything cheaper?",
+        "reply": "Cheaper is possible, but I have to be straight with you: nothing with a private pool comes in under ₹10,000 a night. To go lower we'd drop the private pool:\n\n1. Sossego Retreat, Agonda - Beach Cottage, ~₹6,200/night (₹13,020 total). Great value, right by the beach.\n2. Tide & Tamarind, Candolim - Deluxe Room, ~₹7,400/night (₹15,540 total).\n3. Casa Azul Villas, Assagao - Garden Suite, ~₹8,800/night (₹20,768 total). Sleeps up to 3.\n\nWant one of these, or shall I keep the Plunge Pool Cottage at Sossego (~₹12,100/night)?",
+        "next_action": "present_options",
+        "tools": [
+          "search_properties"
+        ],
+        "seconds": 5.7,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['search_properties']"
+          },
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-sossego-beach-cottage, got goa-sossego-beach-cottage"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['present_options', 'clarify'], got present_options"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "search_properties",
+            "args": {
+              "max_nightly_rate": 10000
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "13_the_other_one.yaml",
+    "name": "Recovery: \"tell me about the second one\"",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Goa next weekend for 2, something with a private pool.",
+        "reply": "Lovely, Goa it is. For Fri 16 to Sun 18 Oct, 2 guests, here's what has a private pool:\n\n1. Sossego Retreat, Agonda (South Goa) - Plunge Pool Cottage, ₹12,100/night, ₹28,556 total\n2. Casa Azul Villas, Assagao (North Goa) - One-Bedroom Pool Villa, ₹16,300/night, ₹38,468 total\n3. Casa Azul Villas, Assagao - Two-Bedroom Pool Villa, ₹19,400/night, ₹45,784 total\n\nSossego is the best value if you'd like a quieter beach stay; Casa Azul suits a North Goa scene. Which one appeals?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.9,
+        "checks": [
+          {
+            "dimension": "recommendation",
+            "check": "top option",
+            "passed": true,
+            "detail": "want goa-sossego-plunge-cottage, got goa-sossego-plunge-cottage"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Goa",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2,
+              "preferences": [
+                "private_pool"
+              ]
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Tell me more about the second one.",
+        "reply": "Casa Azul Villas, Assagao (North Goa): a quiet cluster of whitewashed Portuguese-style villas in the hills, about 10 minutes by car from Anjuna and Vagator beaches. Built for privacy, each villa is walled with its own pool and no shared pool deck. There's a small all-day café (no bar), plus yoga, wifi and parking.\n\nThe One-Bedroom Pool Villa is a walled villa with a king bedroom, a daybed for a third guest, and a 6 m plunge pool in a private garden. ₹16,300/night, ₹38,468 total for the two nights.\n\nShall I hold this one for you?",
+        "next_action": "ask_missing_info",
+        "tools": [
+          "get_property_details"
+        ],
+        "seconds": 6.1,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['get_property_details', 'check_availability', 'calculate_quote']",
+            "passed": true,
+            "detail": "called: ['get_property_details']"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['One-Bedroom Pool Villa', 'Casa Azul']: Casa Azul Villas, Assagao (North Goa): a quiet cluster of whitewashed Portuguese-style villas in the hills, about 10 minutes by car from Anjuna and Vagator beaches. Built for privacy, each villa is wa"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "goa-casa-azul"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "14_whichever_is_better.yaml",
+    "name": "Recovery: \"whichever is better\"",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Udaipur next weekend for 2 of us, we'd love a lake view.",
+        "reply": "Lovely, Udaipur for next weekend: Fri 16 Oct → Sun 18 Oct, 2 guests.\n\nTwo lake-view stays for you:\n\n1. Jharokha Haveli, Gangaur Ghat, Old City — Jharokha Lake Suite, lake view, ~₹13,200/night (₹31,152 total with tax). Right on the ghat, walkable to the old city.\n\n2. Aravalli Lakeside Resort, Badi Lake, 12 km from the Old City — Royal Lake Suite, lake view, ~₹28,800/night (₹67,968 total with tax). Quieter, more space, sleeps up to 4.\n\nWant me to hold one of these?",
+        "next_action": "present_options",
+        "tools": [
+          "update_booking_state",
+          "search_properties"
+        ],
+        "seconds": 6.4,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Udaipur', got 'Udaipur'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.preferences",
+            "passed": true,
+            "detail": "want ['lake_view'], got ['lake_view']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called search_properties",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'search_properties']"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Udaipur",
+              "dates": {
+                "kind": "weekend",
+                "which": "next"
+              },
+              "adults": 2,
+              "preferences": [
+                "lake_view"
+              ]
+            },
+            "status": "ok"
+          },
+          {
+            "name": "search_properties",
+            "args": {},
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Whichever is better, you pick.",
+        "reply": "I'd pick Jharokha Haveli. It's a restored 18th-century haveli right on Lake Pichola, a short walk from the City Palace, and the Jharokha Lake Suite has a carved window seat looking over the lake plus a clawfoot bathtub. The Aravalli suite is lovely but sits 12 km out, and it's over twice the price for a lake you're not right on.\n\nFor Fri 16 to Sun 18 Oct: ₹26,400 for 2 nights + ₹4,752 tax = ₹31,152 total.\n\nShall I hold it, and under what name?",
+        "next_action": "quote_price",
+        "tools": [
+          "get_property_details",
+          "get_property_details",
+          "update_booking_state",
+          "calculate_quote"
+        ],
+        "seconds": 10.2,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "did not call create_booking_hold",
+            "passed": true,
+            "detail": "called: ['get_property_details', 'get_property_details', 'update_booking_state', 'calculate_quote']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['quote_price', 'confirm_hold', 'present_options', 'answer_question'], got quote_price"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['Jharokha', 'Aravalli']: I'd pick Jharokha Haveli. It's a restored 18th-century haveli right on Lake Pichola, a short walk from the City Palace, and the Jharokha Lake Suite has a carved window seat looking over the lake plus "
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "udaipur-jharokha-haveli"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "udaipur-aravalli-lakeside"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "update_booking_state",
+            "args": {
+              "selected_room_type_id": "udaipur-jharokha-lake-suite"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "calculate_quote",
+            "args": {
+              "room_type_id": "udaipur-jharokha-lake-suite"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "15_hold_needs_quote_then_yes.yaml",
+    "name": "Guardrail: no hold before the guest has seen the price",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "Book the Garden Villa at Marari Lakesong in Alleppey for 2 adults from Oct 20 to 23. Name is Rahul Mehta.",
+        "reply": "Hi Rahul, the Garden Villa at Marari Lakesong Resort is available for 20 to 23 Oct, 2 adults.\n\n₹9,200 per night x 3 nights = ₹27,600, plus ₹4,968 tax, total ₹32,568.\n\nShall I hold it for you?",
+        "next_action": "quote_price",
+        "tools": [
+          "update_booking_state",
+          "get_property_details",
+          "check_availability",
+          "update_booking_state",
+          "calculate_quote"
+        ],
+        "seconds": 10.4,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Alleppey', got 'Alleppey'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-10-20', got '2026-10-20'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-10-23', got '2026-10-23'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "state",
+            "check": "state.guest_name",
+            "passed": true,
+            "detail": "want 'Rahul Mehta', got 'Rahul Mehta'"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called calculate_quote",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'check_availability', 'update_booking_state', 'calculate_quote']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "hold_created=False",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'check_availability', 'update_booking_state', 'calculate_quote']"
+          },
+          {
+            "dimension": "pricing",
+            "check": "quote total",
+            "passed": true,
+            "detail": "want 32568, quotes [32568]"
+          },
+          {
+            "dimension": "pricing",
+            "check": "reply states the quoted total",
+            "passed": true,
+            "detail": "Hi Rahul, the Garden Villa at Marari Lakesong Resort is available for 20 to 23 Oct, 2 adults.\n\n₹9,200 per night x 3 nights = ₹27,600, plus ₹4,968 tax, total ₹32"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['confirm_hold', 'quote_price'], got quote_price"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Alleppey",
+              "dates": {
+                "kind": "exact",
+                "check_in": "2026-10-20",
+                "check_out": "2026-10-23"
+              },
+              "adults": 2,
+              "guest_name": "Rahul Mehta"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "alleppey-marari-lakesong"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "check_availability",
+            "args": {
+              "room_type_id": "alleppey-lakesong-garden-villa"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "update_booking_state",
+            "args": {
+              "selected_room_type_id": "alleppey-lakesong-garden-villa"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "calculate_quote",
+            "args": {
+              "room_type_id": "alleppey-lakesong-garden-villa"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Yes, go ahead.",
+        "reply": "Done, Rahul. Your Garden Villa at Marari Lakesong Resort is held under BA44B5AD for 20 to 23 Oct, 2 adults, at ₹32,568 total.\n\nIt's a hold, not a confirmed booking, and it expires in 15 minutes. Note that it's confirmed as per the property's payment policy. Want me to add anything, like an airport transfer?",
+        "next_action": "hold_created",
+        "tools": [
+          "create_booking_hold"
+        ],
+        "seconds": 5.0,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called create_booking_hold",
+            "passed": true,
+            "detail": "called: ['create_booking_hold']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "hold_created=True",
+            "passed": true,
+            "detail": "called: ['create_booking_hold']"
+          },
+          {
+            "dimension": "next_action",
+            "check": "next_action",
+            "passed": true,
+            "detail": "want one of ['hold_created'], got hold_created"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "create_booking_hold",
+            "args": {
+              "room_type_id": "alleppey-lakesong-garden-villa",
+              "addon_ids": []
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "file": "16_contextual_upsell.yaml",
+    "name": "Upsell: anniversary and flying in",
+    "turns": [
+      {
+        "turn": 1,
+        "user": "It's our anniversary! We'd like the Jharokha Lake Suite in Udaipur from Nov 12 to 14, just the two of us. We're flying in.",
+        "reply": "Lovely choice, and happy anniversary! The Jharokha Lake Suite is free for Thu 12 Nov → Sat 14 Nov 2026, and it's a beautiful pick for two: carved jharokha window seat over Lake Pichola and a clawfoot bathtub.\n\nTotal is ₹29,146 for 2 nights (₹11,500 on 12 Nov + ₹13,200 on 13 Nov, plus ₹4,446 tax).\n\nSince it's your anniversary and you're flying in, want me to add the candle-lit rooftop dinner for two (₹6,500)? Or shall I just hold the suite as is?",
+        "next_action": "offer_addons",
+        "tools": [
+          "update_booking_state",
+          "get_property_details",
+          "check_availability",
+          "update_booking_state",
+          "calculate_quote",
+          "get_addons"
+        ],
+        "seconds": 13.0,
+        "checks": [
+          {
+            "dimension": "state",
+            "check": "state.city",
+            "passed": true,
+            "detail": "want 'Udaipur', got 'Udaipur'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_in",
+            "passed": true,
+            "detail": "want '2026-11-12', got '2026-11-12'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.check_out",
+            "passed": true,
+            "detail": "want '2026-11-14', got '2026-11-14'"
+          },
+          {
+            "dimension": "state",
+            "check": "state.adults",
+            "passed": true,
+            "detail": "want 2, got 2"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "called one of ['calculate_quote', 'check_availability']",
+            "passed": true,
+            "detail": "called: ['update_booking_state', 'get_property_details', 'check_availability', 'update_booking_state', 'calculate_quote', 'get_addons']"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "update_booking_state",
+            "args": {
+              "city": "Udaipur",
+              "dates": {
+                "kind": "exact",
+                "check_in": "2026-11-12",
+                "check_out": "2026-11-14"
+              },
+              "adults": 2,
+              "special_requests": [
+                "anniversary",
+                "arriving by flight"
+              ]
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_property_details",
+            "args": {
+              "property_id": "udaipur-jharokha-haveli"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "check_availability",
+            "args": {
+              "room_type_id": "udaipur-jharokha-lake-suite"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "update_booking_state",
+            "args": {
+              "selected_room_type_id": "udaipur-jharokha-lake-suite"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "calculate_quote",
+            "args": {
+              "room_type_id": "udaipur-jharokha-lake-suite"
+            },
+            "status": "ok"
+          },
+          {
+            "name": "get_addons",
+            "args": {
+              "property_id": "udaipur-jharokha-haveli"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      },
+      {
+        "turn": 2,
+        "user": "Sounds lovely. Anything special you'd suggest?",
+        "reply": "For an anniversary, the candle-lit rooftop dinner is the one I'd pick: a private table for two on the rooftop with a set Rajasthani menu and lake views. It's the add-on guests book most for occasions like yours, ₹6,500 for the two of you (plus 18% tax).\n\nShall I add it to the suite and hold both? And what name should I put the hold under?",
+        "next_action": "offer_addons",
+        "tools": [
+          "get_addons"
+        ],
+        "seconds": 7.2,
+        "checks": [
+          {
+            "dimension": "tool_selection",
+            "check": "called get_addons",
+            "passed": true,
+            "detail": "called: ['get_addons']"
+          },
+          {
+            "dimension": "tool_selection",
+            "check": "did not call create_booking_hold",
+            "passed": true,
+            "detail": "called: ['get_addons']"
+          },
+          {
+            "dimension": "response_content",
+            "check": "reply mentions",
+            "passed": true,
+            "detail": "any of ['dinner', 'airport', 'transfer', 'boat']: For an anniversary, the candle-lit rooftop dinner is the one I'd pick: a private table for two on the rooftop with a set Rajasthani menu and lake views. It's the add-on guests book most for occasions "
+          },
+          {
+            "dimension": "hallucination",
+            "check": "final reply grounded",
+            "passed": true,
+            "detail": "[]"
+          },
+          {
+            "dimension": "hallucination",
+            "check": "no fallback reply",
+            "passed": true,
+            "detail": "[]"
+          }
+        ],
+        "trace": [
+          {
+            "name": "get_addons",
+            "args": {
+              "property_id": "udaipur-jharokha-haveli"
+            },
+            "status": "ok"
+          }
+        ],
+        "errors": []
+      }
+    ]
+  }
+]

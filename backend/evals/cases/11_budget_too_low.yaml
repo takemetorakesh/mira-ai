@@ -1,0 +1,10 @@
+name: Budget below anything available
+covers: [recommendation, hallucination]
+turns:
+  - user: Goa this weekend, 2 people, under 3000 a night.
+    expect:
+      state: {city: Goa, adults: 2, budget_per_night: 3000}
+      tools_called: [search_properties]
+      top_option: goa-sossego-beach-cottage
+      reply_mentions_any: [Beach Cottage]
+      next_action: [present_options, clarify]

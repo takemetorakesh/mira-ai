@@ -1,0 +1,403 @@
+{
+  "_comment": "Fictional catalog. Fields under 'seed' are generator inputs only (they become room_inventory rows), not DB columns.",
+  "calendar": { "from": "2026-10-01", "to": "2027-03-31" },
+  "properties": [
+    {
+      "id": "goa-casa-azul",
+      "name": "Casa Azul Villas",
+      "city": "Goa",
+      "area": "Assagao, North Goa",
+      "description": "A quiet boutique cluster of whitewashed Portuguese-style villas in the Assagao hills, 10 minutes by car from Anjuna and Vagator beaches. Built for privacy: villas are walled, most have their own pool, and there is no shared pool deck. Small all-day café; no bar.",
+      "amenities": ["restaurant", "yoga", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.25, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.6 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 7 days before check-in. Cancellations within 7 days are charged 50% of the stay. No-shows are charged in full.",
+        "check_in_out": "Check-in from 14:00, check-out by 11:00.",
+        "children": "Children of all ages are welcome. Children count towards villa occupancy. Pools are unfenced, so children must be supervised at all times.",
+        "pets": "Dogs are allowed in pool villas only, with prior approval. Not allowed in Garden Suites.",
+        "smoking": "Smoking is allowed in outdoor areas only.",
+        "payment": "25% advance to confirm, balance payable at check-in. UPI, cards and bank transfer accepted."
+      },
+      "addons": [
+        { "id": "goa-casa-azul-airport-transfer", "name": "Airport transfer (Mopa or Dabolim)", "description": "Private sedan, one way, up to 3 guests with luggage.", "price": 2400, "price_unit": "per_booking" },
+        { "id": "goa-casa-azul-breakfast", "name": "Breakfast", "description": "Goan-Continental breakfast served in your villa or at the café.", "price": 850, "price_unit": "per_guest_per_night" },
+        { "id": "goa-casa-azul-private-chef", "name": "Private chef dinner", "description": "A chef cooks a 4-course Goan dinner in your villa. Price covers up to 6 guests.", "price": 9500, "price_unit": "per_booking" },
+        { "id": "goa-casa-azul-late-checkout", "name": "Late check-out till 16:00", "description": "Subject to the villa not being booked that evening; confirmed 24 hours before check-out.", "price": 3000, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "goa-casa-azul-garden-suite",
+          "name": "Garden Suite",
+          "description": "A 40 m² suite with one king bed that opens onto the landscaped common garden. Sofa-bed for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 1800,
+          "amenities": ["air_conditioning", "bathtub", "workspace"],
+          "seed": { "base_rate": 7000, "units": 4 }
+        },
+        {
+          "id": "goa-casa-azul-pool-villa-1br",
+          "name": "One-Bedroom Pool Villa",
+          "description": "A walled villa with one king bedroom, a daybed in the lounge for a third guest, and a 6 m plunge pool in a private garden.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2500,
+          "amenities": ["private_pool", "standalone_unit", "private_garden", "air_conditioning"],
+          "seed": { "base_rate": 13000, "units": 3, "sold_out": [["2026-10-09", "2026-10-11"]] }
+        },
+        {
+          "id": "goa-casa-azul-pool-villa-2br",
+          "name": "Two-Bedroom Pool Villa",
+          "description": "A walled villa with a king bedroom and a twin bedroom, a living room, a kitchenette and a 9 m private pool.",
+          "base_occupancy": 4, "max_occupancy": 5, "extra_guest_fee": 2500,
+          "amenities": ["private_pool", "standalone_unit", "private_garden", "living_area", "kitchenette", "twin_beds", "air_conditioning"],
+          "seed": { "base_rate": 15500, "units": 2 }
+        },
+        {
+          "id": "goa-casa-azul-pool-villa-3br",
+          "name": "Three-Bedroom Pool Villa",
+          "description": "The largest villa: two king bedrooms and one twin bedroom, a living and dining room, a full kitchen and a 12 m private pool.",
+          "base_occupancy": 6, "max_occupancy": 8, "extra_guest_fee": 3000,
+          "amenities": ["private_pool", "standalone_unit", "private_garden", "living_area", "kitchenette", "twin_beds", "air_conditioning"],
+          "seed": { "base_rate": 30000, "units": 1 }
+        }
+      ]
+    },
+    {
+      "id": "goa-tide-and-tamarind",
+      "name": "Tide & Tamarind Beach Resort",
+      "city": "Goa",
+      "area": "Candolim, North Goa",
+      "description": "A lively 80-room beachfront resort on Candolim beach with a large lagoon pool, a beach bar and a kids' play area. Walking distance to Calangute's restaurants and nightlife.",
+      "amenities": ["pool", "beach_access", "restaurant", "bar", "spa", "gym", "kids_play_area", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.2, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.6 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 48 hours before check-in. After that, the first night is charged.",
+        "check_in_out": "Check-in from 14:00, check-out by 12:00.",
+        "children": "Children under 6 stay free using existing bedding. Children 6 and above count as extra guests.",
+        "pets": "Pets are not allowed.",
+        "smoking": "Non-smoking rooms. Smoking is permitted in the designated area near the beach bar.",
+        "payment": "Pay at the hotel. A card is required to guarantee the reservation."
+      },
+      "addons": [
+        { "id": "goa-tide-airport-transfer", "name": "Airport transfer (Mopa or Dabolim)", "description": "Shared resort shuttle, one way. Departs on fixed hourly slots.", "price": 1600, "price_unit": "per_booking" },
+        { "id": "goa-tide-breakfast", "name": "Breakfast buffet", "description": "Buffet at the Tamarind restaurant, 7:00-10:30.", "price": 750, "price_unit": "per_guest_per_night" },
+        { "id": "goa-tide-sunset-cruise", "name": "Mandovi sunset cruise", "description": "A 90-minute evening river cruise with live music and snacks. Transport from the resort included.", "price": 1800, "price_unit": "per_guest" },
+        { "id": "goa-tide-early-checkin", "name": "Early check-in from 08:00", "description": "Guaranteed room from 08:00 on arrival day.", "price": 3500, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "goa-tide-deluxe-room",
+          "name": "Deluxe Room",
+          "description": "A 28 m² room with one queen bed facing the gardens. Strictly 2 guests; no extra beds.",
+          "base_occupancy": 2, "max_occupancy": 2, "extra_guest_fee": 0,
+          "amenities": ["air_conditioning", "balcony"],
+          "seed": { "base_rate": 6200, "units": 20 }
+        },
+        {
+          "id": "goa-tide-sea-view-room",
+          "name": "Sea View Room",
+          "description": "A 34 m² room with one king bed, a day-bed for a third guest and a balcony facing the sea.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 1500,
+          "amenities": ["sea_view", "balcony", "air_conditioning"],
+          "seed": { "base_rate": 8900, "units": 10 }
+        },
+        {
+          "id": "goa-tide-family-suite",
+          "name": "Family Suite",
+          "description": "Two connected rooms: one with a king bed and one with two twin beds, plus a small sitting area.",
+          "base_occupancy": 4, "max_occupancy": 5, "extra_guest_fee": 1500,
+          "amenities": ["living_area", "twin_beds", "bathtub", "air_conditioning"],
+          "seed": { "base_rate": 13500, "units": 4 }
+        }
+      ]
+    },
+    {
+      "id": "goa-sossego",
+      "name": "Sossego Retreat",
+      "city": "Goa",
+      "area": "Agonda, South Goa",
+      "description": "A slow-paced eco retreat of wooden cottages on the quiet Agonda beach in South Goa. Daily sunrise yoga, an organic café and no loud music after 22:00. There is no common swimming pool.",
+      "amenities": ["beach_access", "yoga", "restaurant", "wifi"],
+      "seed": { "weekend_multiplier": 1.15, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.5 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 14 days before check-in. Within 14 days the booking is non-refundable.",
+        "check_in_out": "Check-in from 13:00, check-out by 10:00.",
+        "children": "Children above 8 years are welcome. The retreat is not suitable for younger children.",
+        "smoking": "Smoking is not permitted anywhere on the property, including the beach front.",
+        "payment": "Full prepayment at the time of booking."
+      },
+      "addons": [
+        { "id": "goa-sossego-breakfast", "name": "Organic breakfast", "description": "Fresh fruit, eggs to order and local bread at the café.", "price": 600, "price_unit": "per_guest_per_night" },
+        { "id": "goa-sossego-yoga-private", "name": "Private yoga session", "description": "A 75-minute one-to-one session with the resident teacher.", "price": 1500, "price_unit": "per_guest" },
+        { "id": "goa-sossego-early-checkin", "name": "Early check-in from 09:00", "description": "Guaranteed cottage from 09:00 on arrival day.", "price": 2000, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "goa-sossego-beach-cottage",
+          "name": "Beach Cottage",
+          "description": "A wooden cottage on stilts with one queen bed, an outdoor shower and a veranda looking at the sea. 2 guests only.",
+          "base_occupancy": 2, "max_occupancy": 2, "extra_guest_fee": 0,
+          "amenities": ["sea_view", "standalone_unit", "air_conditioning"],
+          "seed": { "base_rate": 5400, "units": 8 }
+        },
+        {
+          "id": "goa-sossego-plunge-cottage",
+          "name": "Plunge Pool Cottage",
+          "description": "A secluded cottage set back from the beach with one king bed, a sofa-bed and a small private plunge pool.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 1200,
+          "amenities": ["private_pool", "standalone_unit", "private_garden", "air_conditioning"],
+          "seed": { "base_rate": 10500, "units": 3 }
+        }
+      ]
+    },
+    {
+      "id": "udaipur-jharokha-haveli",
+      "name": "Jharokha Haveli",
+      "city": "Udaipur",
+      "area": "Gangaur Ghat, Old City",
+      "description": "A restored 18th-century haveli on the banks of Lake Pichola, a short walk from the City Palace. Narrow stairways (no lift), hand-painted rooms and a rooftop restaurant with lake views.",
+      "amenities": ["restaurant", "wifi"],
+      "seed": { "weekend_multiplier": 1.15, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.3 }] },
+      "policies": {
+        "cancellation": "Non-refundable within 14 days of check-in. Earlier cancellations are refunded minus a ₹1,000 processing fee.",
+        "check_in_out": "Check-in from 12:00, check-out by 11:00.",
+        "children": "Children are welcome. The haveli has steep stairs and open terraces, so it is not recommended for toddlers.",
+        "pets": "Pets are not allowed in the haveli.",
+        "smoking": "The haveli is entirely non-smoking to protect the original frescoes.",
+        "payment": "First night charged at booking, balance payable at check-in."
+      },
+      "addons": [
+        { "id": "udaipur-jharokha-boat-ride", "name": "Lake Pichola boat ride", "description": "A one-hour sunset boat ride from the haveli's private ghat.", "price": 900, "price_unit": "per_guest" },
+        { "id": "udaipur-jharokha-rooftop-dinner", "name": "Candle-lit rooftop dinner", "description": "A private table for two on the rooftop with a set Rajasthani menu and lake views. Popular for anniversaries.", "price": 6500, "price_unit": "per_booking" },
+        { "id": "udaipur-jharokha-airport-transfer", "name": "Airport transfer (Maharana Pratap Airport)", "description": "Private car, one way, about 40 minutes.", "price": 1500, "price_unit": "per_booking" },
+        { "id": "udaipur-jharokha-breakfast", "name": "Rooftop breakfast", "description": "Indian and Continental breakfast on the rooftop.", "price": 600, "price_unit": "per_guest_per_night" }
+      ],
+      "room_types": [
+        {
+          "id": "udaipur-jharokha-heritage-room",
+          "name": "Heritage Room",
+          "description": "A compact hand-painted room with one queen bed and a courtyard window. 2 guests only.",
+          "base_occupancy": 2, "max_occupancy": 2, "extra_guest_fee": 0,
+          "amenities": ["air_conditioning"],
+          "seed": { "base_rate": 5800, "units": 8 }
+        },
+        {
+          "id": "udaipur-jharokha-lake-suite",
+          "name": "Jharokha Lake Suite",
+          "description": "A suite with one king bed, a carved jharokha window seat overlooking Lake Pichola and a clawfoot bathtub. A floor mattress can be added for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2000,
+          "amenities": ["lake_view", "bathtub", "air_conditioning"],
+          "seed": { "base_rate": 11500, "units": 3 }
+        }
+      ]
+    },
+    {
+      "id": "udaipur-aravalli-lakeside",
+      "name": "Aravalli Lakeside Resort",
+      "city": "Udaipur",
+      "area": "Badi Lake, 12 km from the Old City",
+      "description": "A modern 60-room resort on the shores of Badi Lake surrounded by the Aravalli hills. Large outdoor pool, spa, kids' play area and a free shuttle to the Old City twice a day.",
+      "amenities": ["pool", "spa", "gym", "restaurant", "bar", "kids_play_area", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.2, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.3 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 72 hours before check-in. After that, one night is charged.",
+        "check_in_out": "Check-in from 14:00, check-out by 12:00.",
+        "children": "Children under 5 stay free. Children 5 and above count as extra guests.",
+        "pets": "Small pets under 10 kg are allowed in Premier Rooms on request.",
+        "smoking": "Non-smoking rooms. Smoking is allowed on balconies.",
+        "payment": "Pay at the hotel or prepay online."
+      },
+      "addons": [
+        { "id": "udaipur-aravalli-airport-transfer", "name": "Airport transfer (Maharana Pratap Airport)", "description": "Private SUV, one way, up to 5 guests.", "price": 1800, "price_unit": "per_booking" },
+        { "id": "udaipur-aravalli-spa-massage", "name": "60-minute spa massage", "description": "Choice of Swedish, deep tissue or Abhyanga at the spa.", "price": 3500, "price_unit": "per_guest" },
+        { "id": "udaipur-aravalli-early-checkin", "name": "Early check-in from 09:00", "description": "Guaranteed room from 09:00 on arrival day.", "price": 3000, "price_unit": "per_booking" },
+        { "id": "udaipur-aravalli-late-checkout", "name": "Late check-out till 17:00", "description": "Guaranteed room till 17:00 on departure day.", "price": 3000, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "udaipur-aravalli-premier-room",
+          "name": "Premier Room",
+          "description": "A 36 m² room with a king bed or two twin beds (on request) and a balcony facing the hills. Extra bed for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2200,
+          "amenities": ["twin_beds", "balcony", "air_conditioning"],
+          "seed": { "base_rate": 9500, "units": 15 }
+        },
+        {
+          "id": "udaipur-aravalli-pool-access-room",
+          "name": "Pool Access Room",
+          "description": "A ground-floor room with a king bed whose terrace steps directly into a lap pool shared by four rooms.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2200,
+          "amenities": ["balcony", "air_conditioning"],
+          "seed": { "base_rate": 14500, "units": 6 }
+        },
+        {
+          "id": "udaipur-aravalli-royal-suite",
+          "name": "Royal Lake Suite",
+          "description": "A 90 m² suite with a king bedroom, a separate living room with a sofa-bed, a soaking tub and a wide lake view.",
+          "base_occupancy": 2, "max_occupancy": 4, "extra_guest_fee": 2500,
+          "amenities": ["lake_view", "living_area", "bathtub", "air_conditioning"],
+          "seed": { "base_rate": 24000, "units": 2 }
+        }
+      ]
+    },
+    {
+      "id": "manali-pine-crest",
+      "name": "Pine Crest Cottages",
+      "city": "Manali",
+      "area": "Old Manali",
+      "description": "Family-run wooden cottages in an apple orchard above Old Manali, a 10-minute walk from the cafés of Manu Temple Road. Evening bonfires in the orchard.",
+      "amenities": ["bonfire", "restaurant", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.2, "peaks": [{ "from": "2026-12-20", "to": "2027-01-05", "multiplier": 1.4 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 5 days before check-in. Within 5 days, 50% of the stay is charged.",
+        "check_in_out": "Check-in from 12:00, check-out by 10:00.",
+        "children": "Children of all ages are welcome. Cots are available free of charge.",
+        "pets": "Well-behaved dogs are welcome in Family Cottages. Please tell us in advance.",
+        "smoking": "No smoking indoors. Smoking is allowed in the orchard away from the cottages.",
+        "payment": "30% advance by UPI or bank transfer, balance at check-in."
+      },
+      "addons": [
+        { "id": "manali-pine-crest-bonfire", "name": "Private bonfire evening", "description": "A reserved bonfire spot with snacks and hot chocolate for your group.", "price": 1500, "price_unit": "per_booking" },
+        { "id": "manali-pine-crest-solang-trip", "name": "Solang Valley day trip", "description": "Shared taxi to Solang Valley with a local guide, about 7 hours. Activities at Solang are paid separately.", "price": 2200, "price_unit": "per_guest" },
+        { "id": "manali-pine-crest-airport-transfer", "name": "Airport transfer (Bhuntar)", "description": "Private car from Bhuntar airport, one way, about 90 minutes.", "price": 3500, "price_unit": "per_booking" },
+        { "id": "manali-pine-crest-breakfast", "name": "Pahadi breakfast", "description": "Home-cooked breakfast with parathas, eggs and local apple jam.", "price": 450, "price_unit": "per_guest_per_night" }
+      ],
+      "room_types": [
+        {
+          "id": "manali-pine-crest-valley-room",
+          "name": "Valley View Room",
+          "description": "A pine-panelled room with one queen bed and a window over the Beas valley. 2 guests only.",
+          "base_occupancy": 2, "max_occupancy": 2, "extra_guest_fee": 0,
+          "amenities": ["mountain_view", "room_heater"],
+          "seed": { "base_rate": 4200, "units": 6 }
+        },
+        {
+          "id": "manali-pine-crest-family-cottage",
+          "name": "Family Cottage",
+          "description": "A two-bedroom wooden cottage (one double, one twin) with a wood-burning fireplace, a kitchenette and an orchard-facing porch.",
+          "base_occupancy": 4, "max_occupancy": 6, "extra_guest_fee": 1000,
+          "amenities": ["fireplace", "kitchenette", "living_area", "twin_beds", "mountain_view", "room_heater", "standalone_unit"],
+          "seed": { "base_rate": 9800, "units": 3 }
+        }
+      ]
+    },
+    {
+      "id": "manali-snowline-spa",
+      "name": "Snowline Spa Resort",
+      "city": "Manali",
+      "area": "Prini, 4 km from Mall Road",
+      "description": "A resort on the left bank of the Beas with snow-peak views, an indoor swimming pool, a spa and a kids' play room. The indoor pool is open 07:00-20:00.",
+      "amenities": ["pool", "spa", "gym", "restaurant", "bar", "kids_play_area", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.2, "peaks": [{ "from": "2026-12-20", "to": "2027-01-05", "multiplier": 1.4 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 7 days before check-in. Within 7 days the first night is charged.",
+        "check_in_out": "Check-in from 14:00, check-out by 11:00.",
+        "children": "Children under 6 stay free. The pool requires adult supervision for children under 12.",
+        "pets": "Pets are not allowed.",
+        "smoking": "Non-smoking resort. Smoking is allowed in the garden gazebo only.",
+        "payment": "Pay at the hotel. A card is required to guarantee the reservation."
+      },
+      "addons": [
+        { "id": "manali-snowline-spa-massage", "name": "Himalayan herbal massage", "description": "A 60-minute massage with warm herbal oils at the spa.", "price": 3200, "price_unit": "per_guest" },
+        { "id": "manali-snowline-half-board", "name": "Breakfast and dinner", "description": "Buffet breakfast and dinner at the resort restaurant.", "price": 1400, "price_unit": "per_guest_per_night" },
+        { "id": "manali-snowline-ski-lesson", "name": "Beginner ski lesson at Solang", "description": "A 3-hour lesson with equipment, January and February only, depending on snow.", "price": 2800, "price_unit": "per_guest" },
+        { "id": "manali-snowline-airport-transfer", "name": "Airport transfer (Bhuntar)", "description": "Private SUV from Bhuntar airport, one way, up to 5 guests.", "price": 3800, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "manali-snowline-deluxe-room",
+          "name": "Deluxe Mountain Room",
+          "description": "A 32 m² room with one king bed, a balcony facing the snow peaks and an extra bed for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 1500,
+          "amenities": ["mountain_view", "balcony", "room_heater"],
+          "seed": { "base_rate": 7800, "units": 12 }
+        },
+        {
+          "id": "manali-snowline-himalayan-suite",
+          "name": "Himalayan Suite",
+          "description": "A 70 m² suite with a king bedroom, a living room with a sofa-bed and fireplace, and a bathtub with a mountain view.",
+          "base_occupancy": 2, "max_occupancy": 4, "extra_guest_fee": 1500,
+          "amenities": ["mountain_view", "living_area", "fireplace", "bathtub", "room_heater"],
+          "seed": { "base_rate": 13800, "units": 3 }
+        }
+      ]
+    },
+    {
+      "id": "alleppey-kettuvallam",
+      "name": "Kettuvallam Houseboats",
+      "city": "Alleppey",
+      "area": "Punnamada, Vembanad backwaters",
+      "description": "Private overnight houseboats on the Alleppey backwaters, each with its own crew and cook. All meals on board are included. The boat cruises until 17:30, then anchors for the night. Mobile signal is patchy and there is no Wi-Fi on board.",
+      "amenities": ["parking"],
+      "seed": { "weekend_multiplier": 1.15, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.3 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 10 days before check-in. Within 10 days, 50% is charged.",
+        "check_in_out": "Boarding at 12:00 at Punnamada jetty, disembarking at 09:00 the next day.",
+        "children": "Children are welcome. Life jackets for children are provided on board.",
+        "pets": "Pets are not allowed on the houseboats.",
+        "smoking": "Smoking is allowed on the open upper deck only.",
+        "payment": "50% advance to confirm, balance payable on boarding."
+      },
+      "addons": [
+        { "id": "alleppey-kettuvallam-canoe-tour", "name": "Village canoe tour", "description": "A 2-hour country-boat ride through narrow canals to a coir-making village.", "price": 900, "price_unit": "per_guest" },
+        { "id": "alleppey-kettuvallam-airport-transfer", "name": "Airport transfer (Kochi)", "description": "Private car from Kochi airport to the jetty, one way, about 2 hours.", "price": 3200, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "alleppey-kettuvallam-1br-houseboat",
+          "name": "One-Bedroom Houseboat",
+          "description": "A private houseboat with one double-bed cabin, a sit-out deck and an attached bathroom. Air-conditioning in the cabin runs 21:00-06:00.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2000,
+          "amenities": ["standalone_unit", "backwater_view", "air_conditioning"],
+          "seed": { "base_rate": 12000, "units": 4 }
+        },
+        {
+          "id": "alleppey-kettuvallam-2br-houseboat",
+          "name": "Two-Bedroom Houseboat",
+          "description": "A private houseboat with two double-bed cabins, an upper deck lounge and two bathrooms. Air-conditioning in cabins runs 21:00-06:00.",
+          "base_occupancy": 4, "max_occupancy": 5, "extra_guest_fee": 2000,
+          "amenities": ["standalone_unit", "backwater_view", "living_area", "air_conditioning"],
+          "seed": { "base_rate": 19500, "units": 2 }
+        }
+      ]
+    },
+    {
+      "id": "alleppey-marari-lakesong",
+      "name": "Marari Lakesong Resort",
+      "city": "Alleppey",
+      "area": "Mararikulam beach, 15 km north of Alleppey town",
+      "description": "A beachside Ayurveda resort of thatched villas among coconut palms on quiet Marari beach. Outdoor pool, Ayurveda centre and daily yoga.",
+      "amenities": ["pool", "beach_access", "ayurveda", "spa", "yoga", "restaurant", "wifi", "parking"],
+      "seed": { "weekend_multiplier": 1.15, "peaks": [{ "from": "2026-12-20", "to": "2027-01-02", "multiplier": 1.3 }] },
+      "policies": {
+        "cancellation": "Free cancellation up to 7 days before check-in. Within 7 days the full stay is charged.",
+        "check_in_out": "Check-in from 14:00, check-out by 11:00.",
+        "children": "Children under 6 stay free. The Ayurveda centre is for guests over 16.",
+        "pets": "Pets are not allowed.",
+        "smoking": "Smoking is allowed only in the designated area near the car park.",
+        "payment": "Pay at the hotel or prepay online."
+      },
+      "addons": [
+        { "id": "alleppey-lakesong-ayurveda-massage", "name": "Abhyanga Ayurveda massage", "description": "A 60-minute full-body warm-oil massage at the Ayurveda centre (guests over 16).", "price": 2800, "price_unit": "per_guest" },
+        { "id": "alleppey-lakesong-breakfast", "name": "Kerala breakfast", "description": "Appam, stew, puttu and fresh fruit at the beach restaurant.", "price": 800, "price_unit": "per_guest_per_night" },
+        { "id": "alleppey-lakesong-airport-transfer", "name": "Airport transfer (Kochi)", "description": "Private car from Kochi airport, one way, about 90 minutes.", "price": 2800, "price_unit": "per_booking" },
+        { "id": "alleppey-lakesong-early-checkin", "name": "Early check-in from 09:00", "description": "Guaranteed villa from 09:00 on arrival day.", "price": 2500, "price_unit": "per_booking" }
+      ],
+      "room_types": [
+        {
+          "id": "alleppey-lakesong-garden-villa",
+          "name": "Garden Villa",
+          "description": "A thatched villa with one queen bed, a walled private garden and an outdoor shower. Extra bed for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 1800,
+          "amenities": ["standalone_unit", "private_garden", "air_conditioning"],
+          "seed": { "base_rate": 9200, "units": 10 }
+        },
+        {
+          "id": "alleppey-lakesong-pool-villa",
+          "name": "Pool Villa",
+          "description": "A thatched villa with one king bed and a private pool in a walled garden. Extra bed for a third guest.",
+          "base_occupancy": 2, "max_occupancy": 3, "extra_guest_fee": 2200,
+          "amenities": ["private_pool", "standalone_unit", "private_garden", "air_conditioning"],
+          "seed": { "base_rate": 17500, "units": 4 }
+        }
+      ]
+    }
+  ]
+}

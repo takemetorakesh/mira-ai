@@ -1,0 +1,10 @@
+name: 'Relative checkout: "till the 13th"'
+covers: [state]
+turns:
+  - user: Goa this weekend for 2 people please.
+    expect:
+      state: {city: Goa, check_in: "2026-10-09", check_out: "2026-10-11", adults: 2}
+  - user: Can we stay till the 13th instead?
+    expect:
+      state: {check_in: "2026-10-09", check_out: "2026-10-13"}
+      tools_called_any: [search_properties, check_availability]

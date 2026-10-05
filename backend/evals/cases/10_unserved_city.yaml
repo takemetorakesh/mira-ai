@@ -1,0 +1,10 @@
+name: Destination we don't serve
+covers: [state, tool_selection, hallucination]
+turns:
+  - user: Any hotels in Jaipur for next weekend?
+    expect:
+      state: {city: null}
+      tools_called: [update_booking_state]
+      tools_not_called: [search_properties]
+      reply_mentions_any: [Goa, Udaipur, Manali, Alleppey]
+      next_action: [clarify, ask_missing_info, answer_question]

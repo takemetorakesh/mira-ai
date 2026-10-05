@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "api", "runtimeExecutable": "make", "runtimeArgs": ["backend"], "port": 8000 },
+    { "name": "ui", "runtimeExecutable": "make", "runtimeArgs": ["frontend"], "port": 5173 }
+  ]
+}

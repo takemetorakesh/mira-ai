@@ -1,0 +1,15 @@
+name: 'Guardrail: no hold before the guest has seen the price'
+covers: [tool_selection, pricing, next_action]
+turns:
+  - user: Book the Garden Villa at Marari Lakesong in Alleppey for 2 adults from Oct 20 to 23. Name is Rahul Mehta.
+    expect:
+      state: {city: Alleppey, check_in: "2026-10-20", check_out: "2026-10-23", adults: 2, guest_name: Rahul Mehta}
+      tools_called: [calculate_quote]
+      quote_total: 32568
+      hold_created: false
+      next_action: [confirm_hold, quote_price]
+  - user: Yes, go ahead.
+    expect:
+      tools_called: [create_booking_hold]
+      hold_created: true
+      next_action: [hold_created]

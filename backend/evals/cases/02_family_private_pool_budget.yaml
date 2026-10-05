@@ -1,0 +1,10 @@
+name: Family, private pool, under 20k
+covers: [state, recommendation]
+turns:
+  - user: Travelling with my wife and 2 kids to Goa next weekend. Something with a private pool under 20k.
+    expect:
+      state: {city: Goa, check_in: "2026-10-16", check_out: "2026-10-18", adults: 2, children: 2, budget_per_night: 20000, preferences: [private_pool]}
+      tools_called: [search_properties]
+      top_option: goa-casa-azul-pool-villa-2br
+      reply_mentions_any: [Two-Bedroom Pool Villa]
+      next_action: [present_options]

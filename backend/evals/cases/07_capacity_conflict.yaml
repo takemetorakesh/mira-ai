@@ -1,0 +1,10 @@
+name: 'Conflicting requirements: 5 guests in a 2-person room'
+covers: [state, recommendation, hallucination]
+turns:
+  - user: There are 5 of us and we want the Heritage Room at Jharokha Haveli in Udaipur next weekend.
+    expect:
+      state: {city: Udaipur, adults: 5, check_in: "2026-10-16"}
+      tools_called_any: [search_properties, check_availability, get_property_details]
+      tools_not_called: [create_booking_hold]
+      reply_mentions_any: ["2 guests", "two guests", "only fits", "maximum", "max", "sleeps 2", "rooms"]
+      next_action: [present_options, clarify]

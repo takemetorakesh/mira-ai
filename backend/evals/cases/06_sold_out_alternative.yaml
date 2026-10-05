@@ -1,0 +1,10 @@
+name: 'No availability: requested villa is sold out'
+covers: [tool_selection, recommendation, hallucination]
+turns:
+  - user: I want the One-Bedroom Pool Villa at Casa Azul this weekend, just the two of us.
+    expect:
+      state: {city: Goa, check_in: "2026-10-09", check_out: "2026-10-11", adults: 2}
+      tools_called_any: [check_availability, search_properties]
+      tools_not_called: [create_booking_hold, calculate_quote]
+      reply_mentions_any: [not available, sold out, booked out, fully booked, unavailable, no availability]
+      next_action: [present_options, clarify, ask_missing_info]

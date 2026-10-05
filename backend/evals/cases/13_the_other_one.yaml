@@ -1,0 +1,10 @@
+name: 'Recovery: "tell me about the second one"'
+covers: [state, tool_selection]
+turns:
+  - user: Goa next weekend for 2, something with a private pool.
+    expect:
+      top_option: goa-sossego-plunge-cottage
+  - user: Tell me more about the second one.
+    expect:
+      tools_called_any: [get_property_details, check_availability, calculate_quote]
+      reply_mentions_any: [One-Bedroom Pool Villa, Casa Azul]

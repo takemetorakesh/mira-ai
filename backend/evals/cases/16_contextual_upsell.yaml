@@ -1,0 +1,12 @@
+name: 'Upsell: anniversary and flying in'
+covers: [tool_selection, pricing]
+turns:
+  - user: It's our anniversary! We'd like the Jharokha Lake Suite in Udaipur from Nov 12 to 14, just the two of us. We're flying in.
+    expect:
+      state: {city: Udaipur, check_in: "2026-11-12", check_out: "2026-11-14", adults: 2}
+      tools_called_any: [calculate_quote, check_availability]
+  - user: Sounds lovely. Anything special you'd suggest?
+    expect:
+      tools_called: [get_addons]
+      reply_mentions_any: [dinner, airport, transfer, boat]
+      tools_not_called: [create_booking_hold]

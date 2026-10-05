@@ -1,0 +1,12 @@
+name: 'Changing requirements: 4 people and one more night'
+covers: [state, tool_selection]
+turns:
+  - user: Need a room in Udaipur next weekend for 2 of us.
+    expect:
+      state: {city: Udaipur, check_in: "2026-10-16", check_out: "2026-10-18", adults: 2}
+      tools_called: [search_properties]
+  - user: Actually make that 4 people and stay one more night.
+    expect:
+      state: {city: Udaipur, check_in: "2026-10-16", check_out: "2026-10-19", adults: 4}
+      tools_called: [update_booking_state]
+      tools_called_any: [search_properties, check_availability]

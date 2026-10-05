@@ -1,0 +1,8 @@
+name: 'Relative dates: "next weekend"'
+covers: [state, tool_selection]
+turns:
+  - user: Need something in Manali next weekend, 2 adults.
+    expect:
+      state: {city: Manali, check_in: "2026-10-16", check_out: "2026-10-18", adults: 2}
+      tools_called: [update_booking_state, search_properties]
+      reply_mentions_any: ["16", "Oct 16", "16 Oct"]

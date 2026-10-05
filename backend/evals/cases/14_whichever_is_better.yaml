@@ -1,0 +1,12 @@
+name: 'Recovery: "whichever is better"'
+covers: [recommendation, next_action]
+turns:
+  - user: Udaipur next weekend for 2 of us, we'd love a lake view.
+    expect:
+      state: {city: Udaipur, preferences: [lake_view]}
+      tools_called: [search_properties]
+  - user: Whichever is better, you pick.
+    expect:
+      reply_mentions_any: [Jharokha, Aravalli]
+      tools_not_called: [create_booking_hold]
+      next_action: [quote_price, confirm_hold, present_options, answer_question]

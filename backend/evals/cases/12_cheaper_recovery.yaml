@@ -1,0 +1,12 @@
+name: 'Recovery: "too expensive, anything cheaper?"'
+covers: [tool_selection, recommendation]
+turns:
+  - user: Goa next weekend for 2, something with a private pool.
+    expect:
+      state: {city: Goa, check_in: "2026-10-16", adults: 2, preferences: [private_pool]}
+      top_option: goa-sossego-plunge-cottage
+  - user: Too expensive. Anything cheaper?
+    expect:
+      tools_called: [search_properties]
+      top_option: goa-sossego-beach-cottage
+      next_action: [present_options, clarify]
